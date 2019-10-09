@@ -7,3 +7,70 @@
 
 
 #pragma once
+
+
+
+#include <string>
+#include <string.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <new.h>
+
+using namespace std;
+
+
+
+class Triangle
+{
+private:
+	string name; ///<Type of shape
+	string colour; ///<Colour of shape
+
+public:
+	// constants
+	float hypotenuse;
+	float sideA;
+	float sideB;
+	float angleA;
+	float angleB;
+	float angleC;
+
+
+	Triangle(string newName, string newColour); ///<<b>Constructor,</b>
+	virtual ~Triangle(void); ///<<b>Destructor</b>
+	string GetHypotenuse(void); 
+	string GetSideA(void);
+	string GetSideB(void);
+	string GetAngleA(void);
+	string GetAngleB(void);
+	string GetAngleC(void);
+	void SetHypotenuse(void);
+	string GetSideA(void);
+	string GetSideB(void);
+	string GetAngleA(void);
+	string GetAngleB(void);
+	string GetAngleC(void);
+	virtual float CalcHypotenuse(void) = 0;
+	virtual float CalcArea(void) = 0;
+	virtual float CalcAngle(void) = 0;
+
+	//length of the hypotenuse through a familiar, old equation.a² + b² = c²
+	//When this is a right triangle, and sides Aand B are given as above, the area of the triangle should also be reported(area = 0.5 * AB in this case).
+	//If the user provides any 2 interior angles of a triangle(does not need to be right - angle), Triangle can provide the missing angle
+
+	/*string GetColour(void) const; ///<<b>Assessor for colour data member</b> 
+	void SetColour(string& newColour); ///<<b>Mutator for colour data member</b>
+	virtual float Perimeter(void) = 0; ///<<b>Virtual method to display descendant's perimeter</b>
+	virtual float Area(void) = 0; ///<<b>Virtual method to display descendant's area</b> 
+	virtual float OverallDimension(void) = 0; ///<<b>Virtual method to display descendant's overall dimension</b>*/
+
+};
+
+/*
+You must have a class called ‘Triangle’.For our purposes a Triangle needs to know about the lengths of its sides, and its internal angles.You may not need to implement all characteristics of a triangle within this class – what is key is the behaviour we’ll outline next.
+2)      An object of class Triangle can be queried for some important details, when the user provides some preliminary information(e.g.through the UI component of your application)
+When this is a right triangle, the user can supply the lengths of sides Aand B.Triangle can then be queried to provide the length of the hypotenuse through a familiar, old equation.a² + b² = c²
+When this is a right triangle, and sides Aand B are given as above, the area of the triangle should also be reported(area = 0.5 * AB in this case).
+If the user provides any 2 interior angles of a triangle(does not need to be right - angle), Triangle can provide the missing angle(as all interior angles of a triangle must sum to 180 degrees).
+*/
