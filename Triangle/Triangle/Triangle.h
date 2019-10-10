@@ -27,33 +27,35 @@ private:
 	string name; ///<Type of shape
 	string colour; ///<Colour of shape
 
+
+	
+	int hypotenuse;
+	int sideA;
+	int sideB;
+	int angleA;
+	int angleB;
+	int angleC;
+
 public:
-	// constants
-	float hypotenuse;
-	float sideA;
-	float sideB;
-	float angleA;
-	float angleB;
-	float angleC;
 
 
 	Triangle(string newName, string newColour); ///<<b>Constructor,</b>
-	virtual ~Triangle(void); ///<<b>Destructor</b>
-	string GetHypotenuse(void); 
-	string GetSideA(void);
-	string GetSideB(void);
-	string GetAngleA(void);
-	string GetAngleB(void);
-	string GetAngleC(void);
-	void SetHypotenuse(void);
-	string GetSideA(void);
-	string GetSideB(void);
-	string GetAngleA(void);
-	string GetAngleB(void);
-	string GetAngleC(void);
-	virtual float CalcHypotenuse(void) = 0;
-	virtual float CalcArea(void) = 0;
-	virtual float CalcAngle(void) = 0;
+	~Triangle(void); ///<<b>Destructor</b>
+	int GetHypotenuse(void);
+	int GetSideA(void);
+	int GetSideB(void);
+	int GetAngleA(void);
+	int GetAngleB(void);
+	int GetAngleC(void);
+	void SetHypotenuse(int);
+	void SetSideA(int);
+	void SetSideB(int);
+	void SetAngleA(int);
+	void SetAngleB(int);
+	void SetAngleC(int);
+	int CalcHypotenuse(void) = 0;
+	int CalcArea(void) = 0;
+	int CalcAngle(void) = 0;
 
 	//length of the hypotenuse through a familiar, old equation.a² + b² = c²
 	//When this is a right triangle, and sides Aand B are given as above, the area of the triangle should also be reported(area = 0.5 * AB in this case).
