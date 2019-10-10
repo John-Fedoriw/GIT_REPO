@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "Triangle.h"
+#include "Triangle.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
