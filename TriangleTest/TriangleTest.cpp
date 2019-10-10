@@ -13,6 +13,7 @@ namespace TriangleTest
 		
 		TEST_METHOD(TestMethod1)
 		{
+
 		}
 	};
 }

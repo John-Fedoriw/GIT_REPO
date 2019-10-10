@@ -1,0 +1,76 @@
+﻿<Window x:Class="Sticks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sticks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas>
+        <TextBlock Canvas.Left="10" Canvas.Top="10" Height="350" Width="650" Background="Cornsilk">
+        </TextBlock>
+
+        <Image Name="myPictureBox" HorizontalAlignment="Left" VerticalAlignment="top" Height="350" Width="650">
+            </Image>
+        
+        <Button Content="Start Stick" 
+                Height="20" 
+                HorizontalAlignment="Right" 
+                Margin="670,10,10,0" 
+                Name="btnStart" 
+                VerticalAlignment="Top" 
+                Width="110" 
+                FontSize="14" 
+                FontWeight="Bold" 
+                Click="btnStart_Click"
+                Cursor="Hand" Grid.ColumnSpan="2"/>
+
+        <Button Content="Pause Stick(s)" 
+                Height="20" 
+                HorizontalAlignment="Right" 
+                Margin="670,60,10,0" 
+                Name="btnPause" 
+                VerticalAlignment="Top" 
+                Width="110" 
+                FontSize="14" 
+                FontWeight="Bold"
+                Click="btnPause_Click"
+                Cursor="Hand" Grid.ColumnSpan="2"/>
+
+        <Button Content="Resume Stick(s)" 
+                Height="20" 
+                HorizontalAlignment="Right" 
+                Margin="670,110,10,0" 
+                Name="btnResume" 
+                VerticalAlignment="Top" 
+                Width="110" 
+                FontSize="14" 
+                FontWeight="Bold" 
+                Click="btnResume_Click"
+                Cursor="Hand" Grid.ColumnSpan="2"/>
+
+        <Button Content="Stop Stick(s)" 
+                Height="20" 
+                HorizontalAlignment="Right" 
+                Margin="670,160,10,0" 
+                Name="btnStop" 
+                VerticalAlignment="Top" 
+                Width="110" 
+                FontSize="14" 
+                FontWeight="Bold" 
+                Click="btnStop_Click"
+                Cursor="Hand" Grid.ColumnSpan="2"/>
+       
+
+        <!-- Margin="170,224,0,0" 
+        RenderTransformOrigin="0.5,0.5" 
+                
+            -->
+
+
+
+
+
+
+    </Canvas>
+</Window>
