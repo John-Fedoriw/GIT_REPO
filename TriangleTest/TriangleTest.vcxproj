@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{E6EA88FA-1DA3-45F6-A4C4-DFC0192E7505}</ProjectGuid>
+    <ProjectGuid>{1C714FE5-A44E-447D-803D-911D7D1AC5A1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TriangleUnitTest</RootNamespace>
+    <RootNamespace>TriangleTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
@@ -166,15 +166,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TriangleUnitTest.cpp" />
+    <ClCompile Include="TriangleTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Triangle\Triangle.vcxproj">
-      <Project>{5efc9fa2-b754-472f-aed2-0a4d90cb5c9a}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

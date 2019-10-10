@@ -24,11 +24,6 @@ using namespace std;
 class Triangle
 {
 private:
-	string name; ///<Type of shape
-	string colour; ///<Colour of shape
-
-
-	
 	int hypotenuse;
 	int sideA;
 	int sideB;
@@ -37,9 +32,7 @@ private:
 	int angleC;
 
 public:
-
-
-	Triangle(string newName, string newColour); ///<<b>Constructor,</b>
+	Triangle(int newSideA, int newSideB, int newSideC, int newAngleA, int newAngleB, int newAngleC); ///<<b>Constructor,</b>
 	~Triangle(void); ///<<b>Destructor</b>
 	int GetHypotenuse(void);
 	int GetSideA(void);
@@ -53,9 +46,9 @@ public:
 	void SetAngleA(int);
 	void SetAngleB(int);
 	void SetAngleC(int);
-	int CalcHypotenuse(void) = 0;
-	int CalcArea(void) = 0;
-	int CalcAngle(void) = 0;
+	int CalcHypotenuse(void);
+	int CalcArea(void);
+	int CalcAngle(void);
 
 	//length of the hypotenuse through a familiar, old equation.a² + b² = c²
 	//When this is a right triangle, and sides Aand B are given as above, the area of the triangle should also be reported(area = 0.5 * AB in this case).

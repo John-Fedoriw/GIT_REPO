@@ -1,20 +1,102 @@
 // Triangle.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
 
-int main()
+
+#include "Triangle.h"
+
+
+
+Triangle::Triangle(int newSideA, int newSideB, int newSideC, int newAngleA, int newAngleB, int newAngleC))
 {
-    std::cout << "Hello World!\n";
+   sideA = newSideA:
+   sideB = newSideB;
+   sideC = newSideC;
+   angleA = newAngleA;
+   angleB = newAngleB;
+   angleC = newAngleC;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+Triangle::~Triangle()
+{
+
+}
+
+
+int Triangle::GetHypotenuse()
+{
+	return hypotenuse;
+}
+
+
+int Triangle::GetSideA()
+{
+	return sideA;
+}
+
+int Triangle::GetSideB()
+{
+	return sideB;
+}
+
+int Triangle::GetAngleA()
+{
+	return angleA;
+}
+
+int Triangle::GetAngleB()
+{
+	return angleB;
+}
+
+int Triangle::GetAngleC()
+{
+	return angleC;
+}
+
+void Triangle::SetHypotonuse()
+{
+	return hypotonuse;
+}
+
+
+void Triangle::SetSideA()
+{
+	return sideA;
+}
+
+void Triangle::SetSideB()
+{
+	return sideB;
+}
+
+void Triangle::SetAngleA()
+{
+	return angleA;
+}
+
+void Triangle::SetAngleB()
+{
+	return angleB;
+}
+
+void Triangle::SetAngleC()
+{
+	return angleC;
+}
+
+int Triangle::CalcHypotenuse()
+{
+	
+}
+
+int Triangle::CalcArea()
+{
+	
+}
+
+int Triangle::CalcAngle()
+{
+	
+}

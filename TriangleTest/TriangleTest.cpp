@@ -1,18 +1,16 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "Triangle.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace TriangleUnitTest
+namespace TriangleTest
 {
-	TEST_CLASS(TriangleUnitTest)
+	TEST_CLASS(TriangleTest)
 	{
 	public:
 		
 		TEST_METHOD(TestMethod1)
 		{
-			Assert::AreEqual(1, 1);
 		}
 	};
 }
