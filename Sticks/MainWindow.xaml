@@ -6,17 +6,26 @@
         xmlns:local="clr-namespace:Sticks"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Canvas>
-        <TextBlock Canvas.Left="10" Canvas.Top="10" Height="350" Width="650" Background="Cornsilk">
-        </TextBlock>
+    <DockPanel>
+        <Grid DockPanel.Dock="Right"  Width="150" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <!--Row 0-->
+                <RowDefinition Height="25"/>
+                <!--Row 1-->
+                <RowDefinition Height="25"/>
+                <!--Row 2-->
+                <RowDefinition Height="25"/>
+                <!--Row 3-->
+                <RowDefinition Height="25"/>
+                <!--Row 4-->
+                <RowDefinition/>
+                <!--Row 5-->
+            </Grid.RowDefinitions>
 
-        <Image Name="myPictureBox" HorizontalAlignment="Left" VerticalAlignment="top" Height="350" Width="650">
-            </Image>
-        
-        <Button Content="Start Stick" 
+            <Button Content="Start Stick" 
+                Grid.Row="0"
                 Height="20" 
-                HorizontalAlignment="Right" 
-                Margin="670,10,10,0" 
                 Name="btnStart" 
                 VerticalAlignment="Top" 
                 Width="110" 
@@ -25,10 +34,9 @@
                 Click="btnStart_Click"
                 Cursor="Hand" Grid.ColumnSpan="2"/>
 
-        <Button Content="Pause Stick(s)" 
+            <Button Content="Pause Stick(s)" 
+                Grid.Row="1"
                 Height="20" 
-                HorizontalAlignment="Right" 
-                Margin="670,60,10,0" 
                 Name="btnPause" 
                 VerticalAlignment="Top" 
                 Width="110" 
@@ -37,10 +45,9 @@
                 Click="btnPause_Click"
                 Cursor="Hand" Grid.ColumnSpan="2"/>
 
-        <Button Content="Resume Stick(s)" 
+            <Button Content="Resume Stick(s)" 
+                Grid.Row="2"
                 Height="20" 
-                HorizontalAlignment="Right" 
-                Margin="670,110,10,0" 
                 Name="btnResume" 
                 VerticalAlignment="Top" 
                 Width="110" 
@@ -49,10 +56,9 @@
                 Click="btnResume_Click"
                 Cursor="Hand" Grid.ColumnSpan="2"/>
 
-        <Button Content="Stop Stick(s)" 
+            <Button Content="Stop Stick(s)"
+                Grid.Row="3"
                 Height="20" 
-                HorizontalAlignment="Right" 
-                Margin="670,160,10,0" 
                 Name="btnStop" 
                 VerticalAlignment="Top" 
                 Width="110" 
@@ -60,11 +66,59 @@
                 FontWeight="Bold" 
                 Click="btnStop_Click"
                 Cursor="Hand" Grid.ColumnSpan="2"/>
-       
 
-        <!-- Margin="170,224,0,0" 
+            <Label Content="Trail Length"
+                Grid.Row="4"
+                Height="40" 
+                VerticalAlignment="Top" 
+                Width="110" 
+                FontSize="14" 
+                FontWeight="Bold" />
+
+            <Slider Name="sldrDelay" 
+                Grid.Row="5"
+                Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" 
+                Height="250"
+                Minimum="1"
+                Maximum="50"
+                TickPlacement="BottomRight"
+                Value="25" 
+                ValueChanged="sldrDelay_ValueChanged"/>
+        </Grid>
+
+        <Canvas x:Name="StickArea" 
+                    Width="Auto" 
+                    DockPanel.Dock="Left" 
+                    Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
+
+
+            <!-- Margin="170,224,0,0" 
         RenderTransformOrigin="0.5,0.5" 
-                
+        Margin="670,160,10,0" 
+             <Image Name="myPictureBox" HorizontalAlignment="Left" VerticalAlignment="top" Height="350" Width="650" Graphi>
+            </Image>
+                 <TextBlock Canvas.Left="10" Canvas.Top="10" Height="350" Width="650" Background="Cornsilk">
+        </TextBlock>
+        
+         HorizontalAlignment="Right" 
+                Margin="670,10,10,0" 
+        
+             HorizontalAlignment="Right" 
+                Margin="670,30,10,0" 
+        
+        HorizontalAlignment="Right" 
+                Margin="670,50,10,0" 
+        
+        HorizontalAlignment="Right" 
+                Margin="670,70,10,0" 
+        
+          HorizontalAlignment="Right" 
+                Margin="690,90,10,0" 
+        
+        HorizontalAlignment="Right" 
+                Margin="725,120,20,30" 
             -->
 
 
@@ -72,5 +126,5 @@
 
 
 
-    </Canvas>
+    </DockPanel>
 </Window>
