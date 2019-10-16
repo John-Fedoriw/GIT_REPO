@@ -26,6 +26,10 @@ namespace Sticks
         private double x2;
         private double y1;
         private double y2;
+        private double xv1;
+        private double xv2;
+        private double yv1;
+        private double yv2;
 
         private double windowWidth = 0;
         private double windowHeight = 0;

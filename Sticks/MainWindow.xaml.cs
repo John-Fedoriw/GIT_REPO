@@ -31,13 +31,14 @@ namespace Sticks
         volatile bool linesMove;
 
         volatile bool runState;     //to check if the program is not paused
-       
+
         public MainWindow()
         {
             InitializeComponent();
             //    this.Window = new System.Drawing.Size(800, 450);
             //    //this.Paint += new System.Drawing.PaintEventHandler(this.Form1_Paint);
             runState = true;
+
         }
 
         void btnPause_Click(object sender, RoutedEventArgs e)
@@ -45,6 +46,7 @@ namespace Sticks
             runState = false;
         }
 
+        //[STAThread]
         void btnStart_Click(object sender, RoutedEventArgs e)
         {
             if (runState)
@@ -63,15 +65,19 @@ namespace Sticks
                 canvasLine = newStick.CreateLine();
                 this.StickArea.Children.Add(canvasLine);
 
-                Thread move = new Thread(new ParameterizedThreadStart(LineMover));
-                move.Start(canvasLine);
+                LineMover(canvasLine);
 
 
-                lineList.Add(canvasLine);      //LineList keeps track of all Lines added to the Canvas
-                threadList.Add(t1); //threadList keeps track of all the started threads
-                //Thread.Sleep(10);
+                //Thread move = new Thread(new ParameterizedThreadStart(newStick.MoveLine));
+                ////move.Start(canvasLine);
+                //LineMover(canvasLine);
 
-                                //Line canvasLine = new Line();
+
+                //lineList.Add(canvasLine);      //LineList keeps track of all Lines added to the Canvas
+                //threadList.Add(t1); //threadList keeps track of all the started threads
+                ////Thread.Sleep(10);
+
+                //Line canvasLine = new Line();
                 //canvasLine = newStick.CreateLine(x1, x2, y1, y2);
                 //this.StickArea.Children.Add(canvasLine);
                 //lineList.Add(canvasLine);      //LineList keeps track of all Lines added to the Canvas
@@ -82,15 +88,12 @@ namespace Sticks
 
         void btnResume_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Thread thread in threadList)
-            {
-                thread.Join();
-            }
+           
         }
 
         void btnStop_Click(object sender, RoutedEventArgs e)
         {
-             for (int i = 0; i < threadList.Count; i++)
+            for (int i = 0; i < threadList.Count; i++)
             {
                 StickArea.Children.Remove(lineList[i]);
             }
@@ -103,18 +106,18 @@ namespace Sticks
         }
 
 
-        //void DrawLine()
-        //{
-        //    Stick newStick = new Stick(this.StickArea.ActualWidth, this.StickArea.ActualHeight);
-        //    this.Dispatcher.Invoke(() =>
-        //    {
-        //        Line canvasLine  = new Line();
-        //        canvasLine = newStick.CreateLine();
-        //        this.StickArea.Children.Add(canvasLine);
-        //        lineList.Add(canvasLine);      //LineList keeps track of all Lines added to the Canvas
+        void DrawLine()
+        {
+            Stick newStick = new Stick(this.StickArea.ActualWidth, this.StickArea.ActualHeight);
+            this.Dispatcher.Invoke(() =>
+            {
+                Line canvasLine = new Line();
+                canvasLine = newStick.CreateLine();
+                this.StickArea.Children.Add(canvasLine);
+                lineList.Add(canvasLine);      //LineList keeps track of all Lines added to the Canvas
 
-        //    });
-        //}
+            });
+        }
 
 
         void Go()
@@ -192,7 +195,8 @@ namespace Sticks
 
                 this.Dispatcher.Invoke(() =>
                         {
-                            //RotateTransform myRotate = new RotateTransform();
+                            RotateTransform myRotate = new RotateTransform();
+                            //myRotate.DependencyObjectType(Stick);
                             Thread.Sleep(10);
                             //Line canvasLine = new Line();
                             //canvasLine = newStick.CreateLine(x1, x2, y1, y2);
@@ -207,11 +211,8 @@ namespace Sticks
                             //Thread.Sleep(10);
                         });
                 //}
+            }
         }
-
-        
-
-    }
     }
 }
 
