@@ -21,15 +21,13 @@ namespace StickThreads
     public partial class MainWindow : Window
     {
 
-
         private static List<Thread> threadList = new List<Thread>();
         private static List<Line> lineList = new List<Line>();
 
         volatile bool linesMove;
 
         volatile bool runState;     //to check if the program is not paused
-
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -65,7 +63,7 @@ namespace StickThreads
 
                 Line newLine = new Line
                 {
-                    Stroke = Brushes.SteelBlue,
+                    Stroke = Brushes.IndianRed,
                     StrokeThickness = 1,
                     X1 = newX1,
                     Y1 = newY1,
@@ -108,6 +106,11 @@ namespace StickThreads
         public void LineMover(object l)
         {
 
+            double XV1 = 1.0;
+            double XV2 = 1.0;
+            double YV1 = 1.0;
+            double YV2 = 1.0;
+
             Line newLine = (Line)l;
 
             //this.Dispatcher.Invoke(() =>
@@ -136,30 +139,29 @@ namespace StickThreads
                     //only Dispatcher can update the objects in the UI from non-UI thread.
                     this.Dispatcher.Invoke(() =>
                     {
-                        newLine.X1 += 1;
-                        newLine.Y2 += 1;
-
-                        if (newLine.X1 < 0 || newLine.X1 > StickArea.ActualWidth)
+                        newLine.X1 += XV1;
+                        newLine.Y2 += YV2;
+                  
+                        if (newLine.X1 < 0 ||newLine.X1 > StickArea.ActualWidth)
                         {
-
+                            XV1 *= -1;
                         }
 
                         if (newLine.X2 < 0 || newLine.X2 > StickArea.ActualWidth)
                         {
-
+                            XV2 *= -1;
                         }
 
-                        if (newLine.Y1 < 0 || newLine.Y1 > StickArea.ActualWidth)
+                        if (newLine.Y1 < 0 || newLine.Y1 > StickArea.ActualHeight)
                         {
-
+                            YV1 *= -1;
                         }
-
-                        if (newLine.Y2 < 0 || newLine.Y2 > StickArea.ActualWidth)
+                        
+                        if (newLine.Y2 < 0 || newLine.Y2 > StickArea.ActualHeight)
                         {
-
+                            YV2 *= -1;
                         }
-
-
+                        
                     });
                     Thread.Sleep(10);
                 }

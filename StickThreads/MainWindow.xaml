@@ -119,6 +119,8 @@
         
         HorizontalAlignment="Right" 
                 Margin="725,120,20,30" 
+        
+         Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
             -->
 
 
