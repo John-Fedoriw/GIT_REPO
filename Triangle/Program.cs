@@ -39,19 +39,33 @@ namespace Triangle
         public double FindAngle(double AngleA, double AngleB)
 
         {
-            return (180.00 - AngleA - AngleB);
+            //return (180.00 - AngleA - AngleB);
+            
 
         }
 
 
 
-       
+        public double FindHypotenuse(double SideA, double SideB double SideC)
+
+        {
+            
+            // AngleA is 90deg
+            //SideA exp 2 + sideB exp 2 = sideC exp 2
+            //return (180.00 - AngleA - AngleB);
+            return 0;
+
+        }
+
 
         //public double FindArea(double tBase, double height)
 
         //{
 
+        //    AngleA is 90deg
         //    return (0.5 * (height * tBase));
+        //    return (0.5 * (SideA * SideB));
+
 
         //}
 
@@ -72,7 +86,7 @@ namespace Triangle
 
         //    {
 
-        //        Console.WriteLine("Iscoles triangle!!\n");
+        //        Console.WriteLine("Iscosles triangle!!\n");
 
         //    }
 

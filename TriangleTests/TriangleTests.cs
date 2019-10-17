@@ -12,9 +12,5 @@ namespace Triangle.Tests
     public class TriangleTests
     {
         [TestMethod()]
-        public void FindAngleTest()
-        {
-            Assert.Fail();
-        }
-    }
+        
 }
