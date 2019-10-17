@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TriangleTest
+namespace Lab2_TriangleTests
 {
     [TestClass]
     public class UnitTest1
@@ -9,7 +9,6 @@ namespace TriangleTest
         [TestMethod]
         public void TestMethod1()
         {
-            Assert::AreEqual(150, (FindAngle(10, 20));
         }
     }
 }
