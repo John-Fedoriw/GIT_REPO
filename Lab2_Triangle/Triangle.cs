@@ -47,10 +47,10 @@ namespace Lab2_Triangle
         public double FindAngle(double AngleA, double AngleB)
         {
 
-            //return (180.00 - AngleA - AngleB);
+         return (180.00 - AngleA - AngleB);
 
 
-            return 0;
+            
 
 
         }

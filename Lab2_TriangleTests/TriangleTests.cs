@@ -14,7 +14,12 @@ namespace Lab2_Triangle.Tests
         [TestMethod()]
         public void FindHypotenuseTest()
         {
-            Assert.IsTrue(0 == 1);
+            double A = 90.0;
+            double B = 90.0;
+            double C = 0.0;
+            
+
+            Assert.IsTrue(C == 28.0);
         }
     }
 }
