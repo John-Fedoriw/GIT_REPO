@@ -82,7 +82,7 @@ namespace Lab2_Triangle
 
 
 
-        public double FindArea(double tBase, double height)
+        public double FindArea(double A, double B)
         {
 
 
