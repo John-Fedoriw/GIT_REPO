@@ -17,8 +17,15 @@ namespace Lab2_Triangle.Tests
             double A = 90.0;
             double B = 90.0;
             double C = 0.0;
-            
 
+
+            Assert.IsTrue(C == 0.0);
+        }
+
+        [TestMethod()]
+        public void FindAreaTest()
+        {
+            double C = 0.0;
             Assert.IsTrue(C == 28.0);
         }
     }

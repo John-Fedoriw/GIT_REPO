@@ -82,25 +82,22 @@ namespace Lab2_Triangle
 
 
 
-        //public double FindArea(double tBase, double height)
+        public double FindArea(double tBase, double height)
+        {
 
 
 
-        //{
+            
 
+            
 
-
-        //    AngleA is 90deg
-
-        //    return (0.5 * (height * tBase));
-
-        //    return (0.5 * (SideA * SideB));
+            return 0;
 
 
 
 
 
-        //}
+        }
 
 
 
