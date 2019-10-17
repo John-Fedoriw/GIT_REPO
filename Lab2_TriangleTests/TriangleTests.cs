@@ -15,7 +15,7 @@ namespace Lab2_Triangle.Tests
         public void FindHypotenuseTest()
         {
             double A = 90.0;
-            double B = 90.0;
+            double B = 0.0;
             double C = 0.0;
             double N = 90.0;
 
@@ -23,6 +23,7 @@ namespace Lab2_Triangle.Tests
             Assert.IsTrue(C == 0.0);
         }
 
+    
         [TestMethod()]
         public void FindAreaTest()
         {
@@ -30,12 +31,15 @@ namespace Lab2_Triangle.Tests
             Assert.IsTrue(A == 0.0);
         }
 
+        
         [TestMethod()]
         public void FindAngleTest()
         {
             double A = 0.0;
             Assert.IsTrue(A == 0.0);
         }
+
+    
     }
 }
 
