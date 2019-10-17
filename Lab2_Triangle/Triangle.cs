@@ -47,10 +47,10 @@ namespace Lab2_Triangle
         public double FindAngle(double AngleA, double AngleB)
         {
 
-         return (180.00 - AngleA - AngleB);
+            return 0;
 
 
-            
+
 
 
         }
@@ -87,9 +87,9 @@ namespace Lab2_Triangle
 
 
 
-            
 
-            
+
+
 
             return 0;
 
@@ -103,59 +103,56 @@ namespace Lab2_Triangle
 
 
 
-        //public void FindTriangleType(double SideA, double SideB, double SideC)
+        public void FindTriangleType(double SideA, double SideB, double SideC)
+        {
 
 
 
-        //{
+            if (SideA == SideB && SideB == SideC)
 
 
 
-        //    if (SideA == SideB && SideB == SideC)
+            {
 
 
 
-        //    {
+                Console.WriteLine("Equalateral Triangle!!1\n");
 
 
 
-        //        Console.WriteLine("Equalateral Triangle!!1\n");
+            }
 
 
 
-        //    }
+            else if (SideA == SideB || SideB == SideC || SideA == SideC)
 
 
 
-        //    else if (SideA == SideB || SideB == SideC || SideA == SideC)
+            {
 
 
 
-        //    {
+                Console.WriteLine("Iscosles triangle!!\n");
 
 
 
-        //        Console.WriteLine("Iscosles triangle!!\n");
+            }
 
 
 
-        //    }
+            else
 
 
 
-        //    else
+            {
 
 
 
-        //    {
+                Console.WriteLine("Scalene triangle!!!\n");
 
 
 
-        //        Console.WriteLine("Scalene triangle!!!\n");
-
-
-
-        //    }
+            }
 
 
 
@@ -163,8 +160,9 @@ namespace Lab2_Triangle
 
 
 
-        //}
+            //}
 
 
+        }
     }
 }

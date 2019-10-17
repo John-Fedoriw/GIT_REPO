@@ -29,6 +29,13 @@ namespace Lab2_Triangle.Tests
             double A = 0.0;
             Assert.IsTrue(A == 0.0);
         }
+
+        [TestMethod()]
+        public void FindAngleTest()
+        {
+            double A = 0.0;
+            Assert.IsTrue(A == 1.0);
+        }
     }
 }
 
