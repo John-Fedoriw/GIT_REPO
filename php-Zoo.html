@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<!--  FILE    :   Animal-Serve_Lanuching.html
+
+      PROJECT :  Assignment 3 Animal Serve
+
+      NAME    :  Nick Iden and John Fedoriw
+
+      date    :  October 14th, 2019
+
+      COMMENT :
+
+              This program is a two page website that asks for users name, validates the name, and
+
+              follows by asking user to choose one of 6 animals. There are two versions of this form.
+
+              One version is using CGI and the other version is using PHP.  Both forms are identical
+
+              besides using CGI or PHP.
+
+              -->
+
+
+
+
+
+
+
+<html>
+
+  <head>
+
+    <style>
+
+
+
+/* creates container box for form */
+
+    .container {
+
+  border-radius: 10px;
+
+  background-color: #f2f2f2;
+
+  padding: 80px;
+
+}
+
+/* change style of text box */
+
+input[type=text], select, textarea {
+
+  width: 25%;
+
+  padding: 16px;
+
+  border: 2px solid #ccc;
+
+  border-radius: 4px;
+
+  resize: vertical;
+
+}
+
+/* stylizes buttons used in the form*/
+
+input[type=button], input[type=submit] {
+
+  background-color: #4CAF50;
+
+  border: none;
+
+  color: white;
+
+  padding: 16px 32px;
+
+  text-decoration: none;
+
+  margin: 4px 2px;
+
+  cursor: pointer;
+
+}
+
+/* stylizes the drop down box in form */
+
+select {
+
+  width: 100%;
+
+  padding: 16px 20px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background-color: #ffffff;
+
+}
+
+
+
+
+
+    </style>
+
+    <title>Animal-Serve </title>
+
+    <script type="text/javascript">
+
+
+
+    var sectionDiv = 0;
+
+    var name = "";
+
+
+
+
+
+     // Function   :   validateInputName()
+
+      // Parameter  :   void
+
+      // Return     :   boolian true or false
+
+      // Comments   :
+
+      //               This function checks the form to make sure
+
+      //               the name input has the propor format input.
+
+
+
+      function validateInputName()
+
+      {
+
+        clearFeedback();
+
+        // get values by id to testrequest
+
+        name = document.getElementById("nameText").value;
+
+        var errorMessage = "";
+
+        var shouldSubmit = true;
+
+
+
+        // check for empty string
+
+        if ((name.trim()).length == 0)
+
+         {
+
+           document.getElementById("errorMessage").innerHTML = "The Name cannot be <b>BLANK</b>.";
+
+
+
+           shouldSubmit = false;
+
+         }
+
+
+
+        // check if name field has proper input
+
+        else if (!/^[a-zA-Z\s-]+[a-zA-Z]$/.test(name))
+
+        {
+
+          // print error message and set return to false
+
+          document.getElementById("errorMessage").innerHTML = "The name field is an incorrect format. <br>";
+
+
+
+          shouldSubmit = false;
+
+        }
+
+        else
+
+        {
+
+          document.getElementById("insertName").innerHTML = name;
+
+          // if name is valid, change section variable
+
+          sectionDiv++;
+
+          divSelect();
+
+        }
+
+
+
+        // return validation
+
+       return shouldSubmit;
+
+      }
+
+
+
+
+      // Function   :   divSelect()
+
+      // Parameter  :   void
+
+      // Return     :   void
+
+      // Comments   :
+
+      //                This function switches between the different div sections
+
+      //                The first div asksfor name and the second div asks
+
+      //                for animal.
+
+
+
+        function divSelect()
+
+        {
+
+          if(sectionDiv == 1) // if the first section is selected
+
+          {
+
+            inputName.style.display="none";
+
+            animalSelect.style.display="block";
+
+          }
+
+       }
+
+
+
+       // Function   :   validateAnimal()
+
+       // Parameter  :   void
+
+       // Return     :   boolian true or false
+
+       // Comments   :
+
+       //                This function check that the drop down option in
+
+       //                valid, if so it will give form permission to send.
+
+
+
+      function validateAnimal()
+
+     {
+
+       clearFeedback();
+
+       var AnimalCheck = document.getElementById("myAnimal").value;
+
+       var errorMessage = "";
+
+       var shouldSubmit = false;
+
+
+
+      if ((AnimalCheck == "Cat") || (AnimalCheck == "Dog") || (AnimalCheck == "Snake")|| (AnimalCheck == "Horse")
+
+     		   || (AnimalCheck == "Mouse") || (AnimalCheck == "Gorilla"))
+
+     	{
+
+     		shouldSubmit = true;
+
+     	}
+
+
+
+        return shouldSubmit;
+
+
+
+      }
+
+
+
+      //----------------------------------------------------------------------------------
+
+      // NAME:    clearFeedback()
+
+      // PURPOSE: Clears text box feedback.
+
+      // INPUTS:  None.
+
+      // RETURNS: None.
+
+      //----------------------------------------------------------------------------------
+
+      function clearFeedback()
+
+      {
+
+      	//clear feedback
+
+      	errorMessage.innerHTML = "";
+
+
+
+      }
+
+
+
+    </script>
+
+  </head>
+
+  <body>
+
+
+
+  <h1><center> Welcome to Animal Serve </center></h1>
+
+
+
+    <!-- create form to be sent off to server -->
+
+    <form name="REGISTER" action="animals.php" method="POST" onsubmit="return validateInputName();">  <!-- Generate the form tags -->
+
+
+
+      <div class="container" id="inputName" name="Name">
+
+        <!-- Some general information to prompt user -->
+
+        <p><center><h2>Please enter your name below</h2></center></p>
+
+        <!-- this is the check box for the faculty dropdown -->
+
+        <center><input type="text" id="nameText" placeholder="John or John Doe" name="name" required></center>
+
+        <!-- button to validate and trigger next div -->
+
+        <br><center><input type="button" value="Click Here" onclick="validateInputName();"></button></center>
+
+
+
+      </div>
+
+      <!-- display the dropdown for animal selection -->
+
+      <div class="container" id="animalSelect" name="AnimalType" style="display:none">
+
+        <p><center><h2>Thanks <div id="insertName"> please select an animal</h2> </center></p>
+
+
+
+        <!-- create table for dropdown -->
+
+        <table align="center">
+
+          <tr>
+
+  					<td>Please Select an Animal : </td>
+
+  					<td><select id="myAnimal" name="userAnimal" required>
+
+  						<option value=""></option>
+
+  						<option name="userCat" value="Cat">Cat</option>
+
+  						<option name="userDog" value="Dog">Dog</option>
+
+  						<option name="userSnake" value="Snake">Snake</option>
+
+  						<option name="userHorse" value="Horse">Horse</option>
+
+  						<option name="userMouse" value="Mouse">Mouse</option>
+
+  						<option name="userGorilla" value="Gorilla">Gorilla</option>
+
+  						</select></td>
+
+
+
+  				</tr>
+
+        </table><br>
+
+        <!-- submit button to validate and send form -->
+
+        <center><input id="mySubmit" input type="submit" value="Submit" onclick="validateAnimal();" /></div></center><br/>
+
+
+
+      </div>
+
+      <!-- Display error messages for INVALID input -->
+
+      <br><center><div id="errorMessage" style="color:red;"></div></center>
+
+  </form>
+
+  </body>
+
+</html>
