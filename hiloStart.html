@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<!--  
+FILE        : hiloStart.html
+PROJECT     : a04.html Assignment 4 Hi-Lo
+PROGRAMMER  : John Fedoriw
+DATE        : Oct 27th, 2019
+DESCRIPTION : This is HTML page is the clinet side page for a typical Hi-Lo game, where the 
+              player guesses values in a specific range until the correct number is found. 
+              It is written using only JavaScript and HTML and only does input-level validation.
+              Logic for the game play is on the server side in an ASP page.
+-->
+
+<html>
+<head>
+<style>
+
+/* creates container box for form */
+
+    .container {
+
+  border-radius: 50px;
+  
+  padding: 80px;
+
+  background-color: #ffcc99;
+
+  font-family:Arial,Helvetica,sans-serif;
+  
+  font-size:large
+  
+}
+
+/* change style of text box */
+
+
+
+input[type=text], select, textarea {
+
+  width: 25%;
+
+  padding: 16px;
+
+  border: 2px solid #ccc;
+
+  border-radius: 4px;
+
+  border-style: solid;
+
+  border-color: #ff3300;
+
+  resize: vertical;
+
+  background-color: #f2f2f2;
+  
+  font-family:Arial,Helvetica,sans-serif;
+  
+  font-size:large
+
+}
+
+
+/* stylizes buttons used in the form*/
+
+input[type=button], input[type=submit] {
+
+  background-color: #ff9900;
+
+  border: none;
+
+  color: white;
+
+  padding: 16px 32px;
+
+  text-decoration: none;
+
+  margin: 4px 2px;
+
+  cursor: pointer;
+
+  font-size:large
+
+
+}
+
+
+  </style>
+    <title>Hi-Lo Game</title>
+
+    <script>
+
+      var promptFlag = 0; //global variable for type of user prompt
+
+       //----------------------------------------------------------------------------------
+       // NAME:    submitInput
+       // PURPOSE: This function is called when the "myButton" button is clicked and its
+       //          main purpose is to determine if the input data is name, or max
+       //          or guess number type, set the prompt labels and to pass it to the next
+       //          applicable function.
+       // INPUTS:  None.
+	   // RETURNS: None.
+	   //----------------------------------------------------------------------------------
+	  function submitInput()
+	  {
+                //reset error message
+        	    feedback.innerHTML = "";
+
+                //set background to a super groovy orange color
+                document.body.style.backgroundColor = "#ff9933";
+                
+                var input = document.getElementById("myPrompt").value;
+                
+        	     	
+
+        	if (promptFlag == 0)//first pass through - check the player name
+        	{
+                //check for a blank
+          	  	if ((input.trim()).length == 0)
+          	  	{
+          	  		//print error message-box
+            		feedback.innerHTML = "Your name <b>cannot</b> be BLANK.";
+           	  	}
+           	  	else
+           	  	{
+           	 		//if not blank the name is OK
+           	 		name = input;
+
+                    // set a cookie for the name
+			        setCookie("name", name, 2);
+
+            		//change the user display
+           	 		feedback.innerHTML = "";
+           	 		promptLine.innerHTML = name + ", please pick a maximum number > 1"
+            		myPrompt.value = "";
+           	 		promptFlag = 1;
+           	  	}
+      	 	}
+        	else if ((promptFlag == 1) || (promptFlag == 2))//the player is playing the game
+        	{
+        		feedback.innerHTML = "";
+        		validateNumber(myPrompt.value);
+        	}
+        	else if (promptFlag == 3)//the player has just won and decided to play again - reset player prompts
+        	{
+        		mySubmit.value = "Submit"
+        		feedback.innerHTML = "";
+        		promptLine.innerHTML = name + ", please pick a maximum number > 1."
+        		myPrompt.value = "";
+        		promptFlag = 1;
+        	}
+
+        // check to see if a cookie has been set for the promptFlag value and if not set one
+		checkCookie();
+       	}
+
+        //----------------------------------------------------------------------------------
+        // NAME:    validateNumber
+        // PURPOSE: This function is called when the "myButton" button is clicked to submit
+        //          a number. Its main purpose is to determine if the input data is a valid
+        //          number type and to pass it to the next applicable function.
+        // INPUTS:  None.
+        // RETURNS:
+        //----------------------------------------------------------------------------------
+
+        function validateNumber()
+        {
+		    var returnFlag = false;
+		    var trueCount = 0;
+
+
+		    var inputNum = document.getElementById("myPrompt").value;
+        	feedback.innerHTML = "";
+
+        	//verify input is numbers using regex
+        	var VerifyNum = /^\d+$/;
+
+        	if (inputNum.match(VerifyNum))
+        	{
+                // set a cookie for the number
+			    setCookie("number", inputNum, 2);
+        		returnFlag = true;
+            }
+        	else//input is invalid
+        	{
+        		feedback.innerHTML = "Please enter an integer > 1";
+        		myPrompt.value = "";
+        	}
+
+		return returnFlag;
+        }
+
+        //----------------------------------------------------------------------------------
+        // NAME:    setCookie
+        // PURPOSE: This function creates a cookie to store user information.
+        // INPUTS:  cookieName: the name of the parameter we want to store info about.
+        //          cookieValue: the value of the parameter we want to store.
+        //          numDays: the lifetime of the cookie.
+        // RETURNS:
+        //----------------------------------------------------------------------------------
+        function setCookie(name) 
+        {
+            var d = new Date();	// we need the Date object in order to create and set the expiration
+
+		    // get the current time/date (in milliseconds) and add the number of milliseconds represented in the # of days
+		    d.setTime(d.getTime() + (numDays * 24 * 60 * 60 * 1000));
+
+		    // now transform this # of milliseconds back into a date in order to place it in the cookie
+		    var expires = "expires="+d.toUTCString();
+
+		    // finally - write the cookie ...
+		    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+        }
+
+        //----------------------------------------------------------------------------------
+        // NAME:    checkCookie
+        // PURPOSE: This function checks if the promptFlag cookie is set and sets it if it 
+        //          does not exist.
+        // INPUTS:  None.
+        // RETURNS:
+        //----------------------------------------------------------------------------------
+        function checkCookie() 
+        {
+            var promptFlag = getCookie("promptFlag");
+
+            if (promptFlag != "") 
+            { 
+               document.cookie ="promptFlag=" + promptFlag;
+            } 
+            else 
+            {
+                setCookie("promptFlag", promptFlag, 2);
+            }
+        }
+
+ 
+
+    </script>
+</head>
+
+<body>
+    
+
+    <center><h1 align="center" style="font-family:Arial,Helvetica,sans-serif">Hi-Lo Game</h1></center>
+
+    <!-- create form to be sent off to server -->
+
+    <form name="REGISTER" action="hilo.asp" method="POST" onsubmit="return validateNumber();">  <!-- Generate the form tags -->
+
+   <div class="container" id="input" name="Input">
+
+   <!-- Some general information to prompt user -->
+    <p class="a">
+        <center>
+            <div id="promptLine">Please enter your name :</div>
+            <div id="myBox"><input id="myPrompt" type="text" placeholder="John or John Doe" name="prompt" required /></div>
+            <div id="myButton"><input id="mySubmit" input type="button" value="Submit" onclick="submitInput(myPrompt.value)" /></div>
+        </center>
+    </p>
+    <p>
+        <center><div id="feedback"></div></center>
+    </p>
+
+  </div>
+</body>
+</html>
