@@ -98,7 +98,7 @@ input[type=button], input[type=submit] {
        //          or guess number type, set the prompt labels and to pass it to the next
        //          applicable function.
        // INPUTS:  None.
-	   // RETURNS: None.
+	   // RETURNS: returnFlag: a boolean indicating if the form input is valid.
 	   //----------------------------------------------------------------------------------
 	  function submitInput()
 	  {
@@ -108,6 +108,8 @@ input[type=button], input[type=submit] {
                 //set background to a super groovy orange color
                 document.body.style.backgroundColor = "#ff9933";
                 
+
+                var returnFlag = false;
                 var input = document.getElementById("myPrompt").value;
                 
         	     	
@@ -126,31 +128,36 @@ input[type=button], input[type=submit] {
            	 		name = input;
 
                     // set a cookie for the name
-			        setCookie("name", name, 2);
+			       /////////////// setCookie("name", name, 2);
 
             		//change the user display
            	 		feedback.innerHTML = "";
            	 		promptLine.innerHTML = name + ", please pick a maximum number > 1"
-            		myPrompt.value = "";
-           	 		promptFlag = 1;
+            		document.getElementById("myPrompt").value = "";
+                    promptFlag = 1;
+                    document.getElementById("myPrompt").placeholder = "2 - X"
+                    
            	  	}
       	 	}
-        	else if ((promptFlag == 1) || (promptFlag == 2))//the player is playing the game
+            //////////////else if ((promptFlag == 1) || (promptFlag == 2))//the player is playing the game
+        	else if (promptFlag == 1)//the player is playing the game
         	{
         		feedback.innerHTML = "";
-        		validateNumber(myPrompt.value);
+        		returnFlag = validateNumber(input);
         	}
-        	else if (promptFlag == 3)//the player has just won and decided to play again - reset player prompts
-        	{
-        		mySubmit.value = "Submit"
-        		feedback.innerHTML = "";
-        		promptLine.innerHTML = name + ", please pick a maximum number > 1."
-        		myPrompt.value = "";
-        		promptFlag = 1;
-        	}
+        	////////////////////////else if (promptFlag == 3)//the player has just won and decided to play again - reset player prompts
+        	//////////////////////{
+        	//////////////////	mySubmit.value = "Submit"
+        	///////////////	feedback.innerHTML = "";
+        	//////////////////	promptLine.innerHTML = name + ", please pick a maximum number > 1."
+        	/////////////////	myPrompt.value = "";
+        	/////////////////	promptFlag = 1;
+        	//////////////////////}
 
-        // check to see if a cookie has been set for the promptFlag value and if not set one
-		checkCookie();
+        ////////////////////              // check to see if a cookie has been set for the promptFlag value and if not set one
+		////////////////////checkCookie();
+
+        return returnFlag;
        	}
 
         //----------------------------------------------------------------------------------
@@ -159,7 +166,7 @@ input[type=button], input[type=submit] {
         //          a number. Its main purpose is to determine if the input data is a valid
         //          number type and to pass it to the next applicable function.
         // INPUTS:  None.
-        // RETURNS:
+        // RETURNS: returnFlag: a boolean indicating if the number is valid.
         //----------------------------------------------------------------------------------
 
         function validateNumber()
@@ -177,13 +184,13 @@ input[type=button], input[type=submit] {
         	if (inputNum.match(VerifyNum))
         	{
                 // set a cookie for the number
-			    setCookie("number", inputNum, 2);
+			    //////////////////////setCookie("number", inputNum, 2);
         		returnFlag = true;
             }
         	else//input is invalid
         	{
         		feedback.innerHTML = "Please enter an integer > 1";
-        		myPrompt.value = "";
+        		document.getElementById("myPrompt").value = "";
         	}
 
 		return returnFlag;
@@ -197,7 +204,7 @@ input[type=button], input[type=submit] {
         //          numDays: the lifetime of the cookie.
         // RETURNS:
         //----------------------------------------------------------------------------------
-        function setCookie(name) 
+        function setCookie(cookieName, cookieValue,numDays) 
         {
             var d = new Date();	// we need the Date object in order to create and set the expiration
 
@@ -211,55 +218,35 @@ input[type=button], input[type=submit] {
 		    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
         }
 
-        //----------------------------------------------------------------------------------
-        // NAME:    checkCookie
-        // PURPOSE: This function checks if the promptFlag cookie is set and sets it if it 
-        //          does not exist.
-        // INPUTS:  None.
-        // RETURNS:
-        //----------------------------------------------------------------------------------
-        function checkCookie() 
-        {
-            var promptFlag = getCookie("promptFlag");
 
-            if (promptFlag != "") 
-            { 
-               document.cookie ="promptFlag=" + promptFlag;
-            } 
-            else 
-            {
-                setCookie("promptFlag", promptFlag, 2);
-            }
-        }
-
- 
+      
 
     </script>
 </head>
 
 <body>
-    
 
-    <center><h1 align="center" style="font-family:Arial,Helvetica,sans-serif">Hi-Lo Game</h1></center>
+
+    <center><h1 align="center" style="font-family:Arial,Helvetica,sans-serif">Hi-Lo Game HTML Side</h1></center>
 
     <!-- create form to be sent off to server -->
+    <form name="REGISTER" action="hilo.asp" method="POST" onsubmit="return submitInput();">
+        <!-- Generate the form tags -->
 
-    <form name="REGISTER" action="hilo.asp" method="POST" onsubmit="return validateNumber();">  <!-- Generate the form tags -->
+        <div class="container" id="input" name="Input">
 
-   <div class="container" id="input" name="Input">
+            <!-- Some general information to prompt user -->
+            <p>
+            <center>
+                <div id="promptLine">Please enter your name :</div>
+                <div id="myBox"><input id="myPrompt" type="text" placeholder="John or John Doe" name="prompt" required /></div>
+                <div id="myButton"><input id="mySubmit" input type="button" value="Submit" onclick="submitInput()" /></div>
+            </center>
+            </p>
+            <p>
+            <center><div id="feedback"></div></center>
+            </p>
 
-   <!-- Some general information to prompt user -->
-    <p class="a">
-        <center>
-            <div id="promptLine">Please enter your name :</div>
-            <div id="myBox"><input id="myPrompt" type="text" placeholder="John or John Doe" name="prompt" required /></div>
-            <div id="myButton"><input id="mySubmit" input type="button" value="Submit" onclick="submitInput(myPrompt.value)" /></div>
-        </center>
-    </p>
-    <p>
-        <center><div id="feedback"></div></center>
-    </p>
-
-  </div>
+        </div>
 </body>
 </html>
